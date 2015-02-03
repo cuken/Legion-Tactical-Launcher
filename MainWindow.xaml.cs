@@ -214,7 +214,10 @@ namespace Legion_Tactical_Launcher
 
         private void addonDirCheck()
         {
-
+            if (addondir_pic == null)
+            {
+                return;
+            }
             string addonPath = tb_addondir.Text;
 
             if (addonPath.EndsWith(@"\"))
@@ -651,6 +654,7 @@ namespace Legion_Tactical_Launcher
 
         private void tb_addondir_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //TODO: For some reason this is being called early and causing a null reference exception for the addondir_pic element.
             addonDirCheck();
         }
 
