@@ -52,7 +52,7 @@
                 <Label Content="Addon Dir:" Foreground="#FF787878" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" FontSize="15" Canvas.Left="22" Canvas.Top="78" Width="86"/>
                 <Label Content="TS3 Dir:" Foreground="#FF787878" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" FontSize="15" Canvas.Left="38" Canvas.Top="111" Width="70"/>
                 <Label Content="FTP Settings" Foreground="White" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" FontSize="20" Canvas.Left="416" Canvas.Top="10"/>
-                <TextBox x:Name="tb_arma3dir" Height="23" Canvas.Left="108" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="213" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" Background="#FF1C1C1C" Foreground="White">
+                <TextBox x:Name="tb_arma3dir" Height="23" Canvas.Left="108" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="213" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" Background="#FF1C1C1C" Foreground="White" MaxLines="1">
                     <TextBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                             <GradientStop Color="#FFABADB3" Offset="0.05"/>
@@ -61,7 +61,7 @@
                         </LinearGradientBrush>
                     </TextBox.BorderBrush>
                 </TextBox>
-                <TextBox x:Name="tb_addondir" Height="23" Canvas.Left="108" TextWrapping="Wrap" Text="TextBox" Canvas.Top="83" Width="213" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" Background="#FF1C1C1C" Foreground="White">
+                <TextBox x:Name="tb_addondir" Height="23" Canvas.Left="108" TextWrapping="Wrap" Text="TextBox" Canvas.Top="83" Width="213" FontFamily="/Legion Tactical Launcher;component/Resources/#Jura Regular" Background="#FF1C1C1C" Foreground="White" TextChanged="tb_addondir_TextChanged">
                     <TextBox.BorderBrush>
                         <LinearGradientBrush EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
                             <GradientStop Color="#FFABADB3" Offset="0.05"/>

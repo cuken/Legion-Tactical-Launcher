@@ -98,7 +98,7 @@ namespace Legion_Tactical_Launcher
             iniSetup();
             arma3DirCheck();
             addonDirCheck();
-            ts3DirCheck();
+            ts3DirCheck();            
 
             //Addons = new ObservableCollection<CheckedListItem<Addon>>();
             //Addons.Add(new CheckedListItem<Addon>(new Addon(){Name="Test1"}));
@@ -165,6 +165,31 @@ namespace Legion_Tactical_Launcher
             tb_ftpPort.Text = ini.IniReadValue("FTP", "PORT");
             tb_ftpUser.Text = ini.IniReadValue("FTP", "USER");
             tb_ftpPass.Text = ini.IniReadValue("FTP", "PASS");
+
+            // Set Arma 3 Directory if not Set
+            if (tb_arma3dir.Text == String.Empty)
+            {
+                string armaDir = getArmaDirectory();
+
+                if (armaDir != String.Empty) {
+                
+                    tb_arma3dir.Text = armaDir;
+                    ini.IniWriteValue("Directory", "ARMA3", armaDir);                    
+
+                }                
+            }
+
+            // Set Teamspeak 3 Directory if not Set
+            if (tb_ts3dir.Text == String.Empty)
+            {
+                string ts3Dir = getTS3Directory();
+
+                if (ts3Dir != String.Empty)
+                {
+                    tb_ts3dir.Text = ts3Dir;
+                    ini.IniWriteValue("Directory", "TS3", ts3Dir);
+                }
+            }
         }
 
         private void arma3DirCheck()
