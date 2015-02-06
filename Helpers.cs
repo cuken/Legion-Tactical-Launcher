@@ -77,6 +77,43 @@ namespace Legion_Tactical_Launcher
 
             return ts3Directory;
         }
+
+        // Return a List of Addon SubDirectories to be added to the GUI
+        private List<string> getAddonSubDirs()
+        {
+            List<string> addonSubDirs = new List<string>();
+
+            // Find all Subfolders of the Mod Directory
+            String[] addonDirs = Directory.GetDirectories(tb_addondir.Text);
+
+            foreach (string dir in addonDirs) {
+                // Check for Mod.cpp 
+                Boolean modFileExists = Directory.GetFiles(dir, "mod.cpp", SearchOption.TopDirectoryOnly).Length > 0 ? true : false;
+                // Check for a addons subfolder
+                Boolean addonDirExists = Directory.GetDirectories(dir, "addons", SearchOption.TopDirectoryOnly).Length > 0 ? true : false;
+                
+                // Add Sub Directory to List because it has a mod in it.
+                if (modFileExists || addonDirExists)
+                {
+                    addonSubDirs.Add(dir);
+                }                
+                
+            }            
+            
+            return addonSubDirs;                        
+        }
+
+        private void updateAddonListBox() 
+        {
+            List<string> addonDirs = getAddonSubDirs();
+
+            foreach (string dir in addonDirs)
+            {
+                string returnDir = "@" + dir.Split('@').Last();
+                AddonListing.Items.Add(returnDir);
+            }
+        }
+        
         #endregion
     }
 }

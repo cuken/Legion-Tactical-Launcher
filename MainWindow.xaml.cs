@@ -98,7 +98,10 @@ namespace Legion_Tactical_Launcher
             iniSetup();
             arma3DirCheck();
             addonDirCheck();
-            ts3DirCheck();            
+            ts3DirCheck();
+
+            // If Addon Directory is Good Update the Listbox
+            if (addonGood) { updateAddonListBox(); }
 
             //Addons = new ObservableCollection<CheckedListItem<Addon>>();
             //Addons.Add(new CheckedListItem<Addon>(new Addon(){Name="Test1"}));
@@ -677,6 +680,12 @@ namespace Legion_Tactical_Launcher
             {
                 MessageBox.Show("Unable to connect to FTP site!");
             }
+            else
+            {
+                foreach (string s in temp) { Console.Write(s); } 
+                //MessageBox.Show();
+                result = true;
+            }
 
 
             return result;
@@ -709,7 +718,16 @@ namespace Legion_Tactical_Launcher
 
             }
         }
+
+        private void AddAddonGroup(object sender, RoutedEventArgs e)
+        {
+
+        }        
        
+        private void RemoveAddonGroup(object sender, RoutedEventArgs e)
+        {
+
+        }
         
     }
 }

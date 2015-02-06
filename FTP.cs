@@ -19,7 +19,7 @@ namespace Legion_Tactical_Launcher
         private int bufferSize = 2048;
 
         /* Construct Object */
-        public ftp(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; }
+        public ftp(string hostIP, string userName, string password) { host = hostIP; user = userName; pass = password; isValidFTPAddress(); }
 
         /* Download File */
         public void download(string remoteFile, string localFile)
@@ -267,7 +267,7 @@ namespace Legion_Tactical_Launcher
             try
             {
                 /* Create an FTP Request */
-                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + directory);
+                ftpRequest = (FtpWebRequest)FtpWebRequest.Create( host + "/" + directory);
                 /* Log in to the FTP Server with the User Name and Password Provided */
                 ftpRequest.Credentials = new NetworkCredential(user, pass);
                 /* When in doubt, use these options */
@@ -305,7 +305,7 @@ namespace Legion_Tactical_Launcher
         public string[] directoryListDetailed(string directory)
         {
             try
-            {
+            {                                
                 /* Create an FTP Request */
                 ftpRequest = (FtpWebRequest)FtpWebRequest.Create(host + "/" + directory);
                 /* Log in to the FTP Server with the User Name and Password Provided */
@@ -334,11 +334,19 @@ namespace Legion_Tactical_Launcher
                 ftpRequest = null;
                 /* Return the Directory Listing as a string Array by Parsing 'directoryRaw' with the Delimiter you Append (I use | in This Example) */
                 try { string[] directoryList = directoryRaw.Split("|".ToCharArray()); return directoryList; }
-                catch (Exception ex) { Console.WriteLine(ex.ToString()); }
+                catch (Exception ex) { Console.WriteLine(ex.ToString() + "\n"); }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); }
             /* Return an Empty string Array if an Exception Occurs */
             return new string[] { "" };
+        }
+
+        public void isValidFTPAddress() 
+        {
+            if (!host.StartsWith(@"ftp://"))
+            {
+                host = "ftp://" + host;
+            }
         }
     }
 }
