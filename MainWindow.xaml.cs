@@ -100,6 +100,9 @@ namespace Legion_Tactical_Launcher
             addonDirCheck();
             ts3DirCheck();
 
+            // If Addon Directory is Good Update the Listbox
+            if (addonGood) { updateAddonListBox(); }
+
             //Addons = new ObservableCollection<CheckedListItem<Addon>>();
             //Addons.Add(new CheckedListItem<Addon>(new Addon(){Name="Test1"}));
             //Addons.Add(new CheckedListItem<Addon>(new Addon() { Name = "Test2" }));
@@ -165,6 +168,31 @@ namespace Legion_Tactical_Launcher
             tb_ftpPort.Text = ini.IniReadValue("FTP", "PORT");
             tb_ftpUser.Text = ini.IniReadValue("FTP", "USER");
             tb_ftpPass.Text = ini.IniReadValue("FTP", "PASS");
+
+            // Set Arma 3 Directory if not Set
+            if (tb_arma3dir.Text == String.Empty)
+            {
+                string armaDir = getArmaDirectory();
+
+                if (armaDir != String.Empty) {
+                
+                    tb_arma3dir.Text = armaDir;
+                    ini.IniWriteValue("Directory", "ARMA3", armaDir);                    
+
+                }                
+            }
+
+            // Set Teamspeak 3 Directory if not Set
+            if (tb_ts3dir.Text == String.Empty)
+            {
+                string ts3Dir = getTS3Directory();
+
+                if (ts3Dir != String.Empty)
+                {
+                    tb_ts3dir.Text = ts3Dir;
+                    ini.IniWriteValue("Directory", "TS3", ts3Dir);
+                }
+            }
         }
 
         private void arma3DirCheck()
@@ -189,7 +217,10 @@ namespace Legion_Tactical_Launcher
 
         private void addonDirCheck()
         {
-
+            if (addondir_pic == null)
+            {
+                return;
+            }
             string addonPath = tb_addondir.Text;
 
             if (addonPath.EndsWith(@"\"))
@@ -626,6 +657,7 @@ namespace Legion_Tactical_Launcher
 
         private void tb_addondir_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //TODO: For some reason this is being called early and causing a null reference exception for the addondir_pic element.
             addonDirCheck();
         }
 
@@ -647,6 +679,12 @@ namespace Legion_Tactical_Launcher
             if (temp.Length < 1)
             {
                 MessageBox.Show("Unable to connect to FTP site!");
+            }
+            else
+            {
+                foreach (string s in temp) { Console.Write(s); } 
+                //MessageBox.Show();
+                result = true;
             }
 
 
@@ -680,7 +718,16 @@ namespace Legion_Tactical_Launcher
 
             }
         }
+
+        private void AddAddonGroup(object sender, RoutedEventArgs e)
+        {
+
+        }        
        
+        private void RemoveAddonGroup(object sender, RoutedEventArgs e)
+        {
+
+        }
         
     }
 }
