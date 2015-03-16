@@ -4,12 +4,11 @@ Legion-Tactical-Launcher
 C# WPF .NET 4.5 Frontend for mod management in Arma 3. 
 <br>
 <ul><b>External Libraries Used</b>
-	<li>Ooji Vista Folder Browser</li>
+	<li>Ookii Vista Folder Browser</li>
 <br>
 <ul><b>To Do</b>
   <li>Implement Transfer Logic (Not sure if we want to use FTP / HTTP / RSYNC)</li>
   <li>Implement options for all tabs</li>
-  <li>Fix INI not saving information properly</li>
 </ul>
 <br>
 <ul><b>Features</b>
